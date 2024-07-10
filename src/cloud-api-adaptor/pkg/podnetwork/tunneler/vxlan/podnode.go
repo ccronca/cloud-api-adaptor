@@ -12,8 +12,7 @@ import (
 )
 
 const (
-	podVxlanInterface = "vxlan0"
-	maxMTU            = 1450
+	maxMTU = 1450
 )
 
 type podNodeTunneler struct {
@@ -25,6 +24,7 @@ func NewPodNodeTunneler() tunneler.Tunneler {
 
 func (t *podNodeTunneler) Setup(nsPath string, podNodeIPs []netip.Addr, config *tunneler.Config) error {
 
+	podVxlanInterface := config.InterfaceName
 	nodeAddr := config.WorkerNodeIP
 
 	if !nodeAddr.IsValid() {

@@ -21,7 +21,6 @@ func NewPodNodeTunneler() tunneler.Tunneler {
 }
 
 const (
-	podVEthName  = "eth0"
 	hostVEthName = "veth0"
 
 	podTableID          = 45001
@@ -39,6 +38,7 @@ func (t *podNodeTunneler) Setup(nsPath string, podNodeIPs []netip.Addr, config *
 		return errors.New("secondary pod node IP is not available")
 	}
 
+	podVEthName := config.InterfaceName
 	podNodeIP := podNodeIPs[1]
 
 	podIP := config.PodIP
